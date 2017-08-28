@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 import stripe
 
 def checkout(request):
-    stripe.api_key = "sk_test_v3Be1Xz9BIC1vZwxvredkzNM"
+    stripe.api_key = "sk_live_lpFbrd5HLHskXwpotoxLOXK1"
     if request.method=="POST":
         token = request.POST['stripeToken']
         email = request.POST['stripeEmail']
