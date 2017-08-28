@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h1>Find Tutor</h1>
+<p>Use this form to find a tutor that matches your student's needs. </p>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+{% if count > 0 %}
+<h1>Results:</h1>
+<p>Click on a tutor's name to schedule them. Please note their available times listed below.</p>
+<ul>
+  {% for obj in queryset %}
+  <li><a href="/find/{{ obj.slug }}">{{ obj }}</a></li>
+    <ul>
+      <li>School: {{ obj.school }}
+      <li>Specialty: {{ obj.subject }}</li>
+      <li>Location: {{ obj.city }}</li>
+      <li>Bio: {{ obj.bio }}</li>
+      <li>Available at these times:</li>
+        <ul>
+          {% for time in availability_set %}
+          <li>{{ time }}</li>
+          {% endfor %}
+        </ul>
+    </ul>
+  {% endfor %}
+</ul>
+
+
+{% elif count == 0 %}
+<p>Sorry! No Tutors matched your criteria.</p>
+{% endif %}
+</div>
+{% endblock %}

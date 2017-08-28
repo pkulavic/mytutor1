@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h1>All Done!</h1>
+<p>You will recieve an email shortly to the address you provided ({{ email }}) introducing you to your new tutor. If you would like to contact them before that, here is their information:</p>
+<h3>{{ tutor }}</h3> <h4>{{ tutorschool }}</h4>
+<h5>Email: <a href="mailto: {{ tutoremail }}">{{ tutoremail }}</a></h5>
+<h5>Cell Phone:{{ tutorphone }}</h5>
+<br>
+<br>
+<h2>Thank you for using MyTutor.</h2>
+<h5>Questions? Concerns? <a href="/contact/">Contact Us.</a></h5>
+</div>
+{% endblock %}

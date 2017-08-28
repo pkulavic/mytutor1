@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h1>Check Out</h1>
+<h3>Congratulations! Your new tutor is {{ tutor }}.</h3>
+<p>You have successfully scheduled a session:</p>
+<h5>{{  time }}</h5>
+<ul>
+
+</ul>
+<p>Each session is one hour long at $35/hour. You will be charged weekly for every week you meet with your tutor. You may cancel your subscription at any time. </p>
+<br>
+<form action="/checkout/" method="POST">
+  {% csrf_token %}
+  {{ BoundPaymentForm.as_p }}
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_WxmoITbCI9Ps85LuZq9cTXe6"
+    data-amount="3500"
+    data-name="My Tutor Marin"
+    data-description="Checkout"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+
+</form>
+
+</div>
+{% endblock %}
